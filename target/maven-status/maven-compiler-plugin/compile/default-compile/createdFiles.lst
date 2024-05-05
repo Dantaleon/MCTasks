@@ -1,3 +1,7 @@
-com\nick\ms\Greeting.class
-com\nick\ms\GreetingContoller.class
+com\nick\ms\repository\ProductRepository.class
+com\nick\ms\error\ProductNotFoundException.class
+com\nick\ms\model\Product.class
+com\nick\ms\error\ProductNotCreatedException.class
+com\nick\ms\error\GeneralErrorResponse.class
+com\nick\ms\controller\ProductController.class
 com\nick\ms\Main.class

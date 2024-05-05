@@ -3,9 +3,12 @@ package com.nick.ms.model;
 public class Product {
 	
 	private String name;
+
 	private String description;
-	private double price;
-	private boolean isInStock;
+	
+	private double price = 0;
+	
+	private boolean isInStock = false;
 	
 	public Product() {
 		super();
@@ -18,6 +21,13 @@ public class Product {
 		this.price = price;
 		this.isInStock = isInStock;
 	}
+	
+	public Product(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
+	
 
 	public String getName() {
 		return name;

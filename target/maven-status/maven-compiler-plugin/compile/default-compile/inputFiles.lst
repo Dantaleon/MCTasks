@@ -1,3 +1,7 @@
 C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\Main.java
-C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\GreetingContoller.java
-C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\Greeting.java
+C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\error\ProductNotFoundException.java
+C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\error\ProductNotCreatedException.java
+C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\repository\ProductRepository.java
+C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\model\Product.java
+C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\error\GeneralErrorResponse.java
+C:\Users\nick\eclipse-workspace\MyProducts\src\main\java\com\nick\ms\controller\ProductController.java

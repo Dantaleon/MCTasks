@@ -2,14 +2,21 @@ package com.nick.ms.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nick.ms.error.GeneralErrorResponse;
+import com.nick.ms.error.ProductNotCreatedException;
+import com.nick.ms.error.ProductNotFoundException;
 import com.nick.ms.model.Product;
 import com.nick.ms.repository.ProductRepository;
 
@@ -19,8 +26,9 @@ public class ProductController {
 	ProductRepository productRep = new ProductRepository();
 
 	@PostMapping("/products")
-	public Product createProduct(Product product) {
-		
+	@ResponseStatus(HttpStatus.CREATED)
+	public Product createProduct(@RequestBody Product product) {
+
 		productRep.createProduct(product);
 		return product;
 	}
@@ -38,14 +46,34 @@ public class ProductController {
 	}
 	
 	@PutMapping("/products/{name}")
-	public void updateProductByName(Product product, @PathVariable String name) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateProductByName(@RequestBody Product product, @PathVariable String name) {
 		
 		productRep.updateProductByName(product, name);
 	}
 	
 	@DeleteMapping("/products/{name}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteProductByName(@PathVariable String name) {
 		
 		productRep.deleteProductByName(name);
 	}
+	
+	// Exception handlers
+	@ExceptionHandler({ProductNotCreatedException.class})
+	public ResponseEntity<GeneralErrorResponse> handleProductException(ProductNotCreatedException e) {
+		
+		GeneralErrorResponse errorResponse = new GeneralErrorResponse(e.getMessage());
+		
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler({ProductNotFoundException.class})
+	public ResponseEntity<GeneralErrorResponse> handleProductException(ProductNotFoundException e) {
+		
+		GeneralErrorResponse errorResponse = new GeneralErrorResponse(e.getMessage());
+		
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+	}
+	// Exception handlers END
 }

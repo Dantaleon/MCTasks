@@ -2,6 +2,7 @@ package com.nick.ms.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +24,15 @@ import com.nick.ms.repository.ProductRepository;
 @RestController
 public class ProductController {
 	
-	ProductRepository productRep = new ProductRepository();
+	
+	ProductRepository productRep;
+	
+	@Autowired
+	public ProductController(ProductRepository productRep) {
+		this.productRep = productRep;
+	}
+	
+	
 
 	@PostMapping("/products")
 	@ResponseStatus(HttpStatus.CREATED)

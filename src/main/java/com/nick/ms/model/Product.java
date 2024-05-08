@@ -1,20 +1,30 @@
 package com.nick.ms.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "product")
 public class Product {
 	
+	@Id
+	@Column(name = "name", nullable = false, length = 255)
 	private String name;
-
+	
+	@Column(name = "description", nullable = false, length = 4095)
 	private String description;
 	
-	private double price = 0;
+	@Column(name = "price", nullable = false)
+	private double price = (Double) 0.0;
 	
-	private boolean isInStock = false;
+	@Column(name = "inStock", nullable = false, columnDefinition = "boolean NOT NULL DEFAULT false")
+	private boolean isInStock;
 	
-	public Product() {
-		super();
-	}
+	public Product() {}
 	
-	public Product(String name, String description, double price, boolean isInStock) {
+	public Product(String name, String description, Double price, Boolean isInStock) {
 		super();
 		this.name = name;
 		this.description = description;

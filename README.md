@@ -1,6 +1,7 @@
 # MCTasks
 Общая информация:
-Maven version: 3.9.6
+Maven version: 3.9.6\n
+в папке target хранится jar MyProducts-0.0.1-SNAPSHOT.jar 
 
 Ветка t1:
 Java version: 8

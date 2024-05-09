@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -40,12 +41,10 @@ public class Main {
         
     }
     
-    @Bean
-    public CommandLineRunner commandLineRunner() {
-        return args -> {
-            System.out.println("Application started successfully!");
-        };
-    }
+	/*
+	 * @Bean public CommandLineRunner commandLineRunner() { return args -> {
+	 * System.out.println("Application started successfully!"); }; }
+	 */
     
     @Bean(name = "dataSource")
     public DataSource getDataSource() {

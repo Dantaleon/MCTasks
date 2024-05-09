@@ -11,7 +11,7 @@ Java version: 8 <br/>
 Java version: 17.0.10 <br/>
 !Если при запуске jar ничего не происходит - нужно запустить cmd от администратора <br/>
 
-Параметры подключения к PostgreSQL (можно понять в application.properties):<br/>
+Параметры подключения к PostgreSQL (из application.properties):<br/>
 username = postgres; password = admin123; <br>
 
 Скрипт для таблицы product:<br/>

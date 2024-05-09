@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ import com.nick.ms.error.ProductNotFoundException;
 import com.nick.ms.model.Product;
 import com.nick.ms.repository.ProductRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class ProductController {
 	
@@ -36,8 +39,12 @@ public class ProductController {
 
 	@PostMapping("/products")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Product createProduct(@RequestBody Product product) {
-
+	public Product createProduct(@RequestBody @Valid Product product, BindingResult errorMessages) {
+		
+		if (errorMessages.hasErrors()) {
+			throw new ProductNotCreatedException(errorMessages.getFieldErrors().toString());
+		}
+		
 		productRep.createProduct(product);
 		return product;
 	}
@@ -56,7 +63,12 @@ public class ProductController {
 	
 	@PutMapping("/products/{name}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void updateProductByName(@RequestBody Product product, @PathVariable String name) {
+	public void updateProductByName(@RequestBody @Valid Product product, BindingResult errorMessages,
+			@PathVariable String name) {
+		
+		if (errorMessages.hasErrors()) {
+			throw new ProductNotCreatedException(errorMessages.getAllErrors().toString());
+		}
 		
 		productRep.updateProductByName(product, name);
 	}

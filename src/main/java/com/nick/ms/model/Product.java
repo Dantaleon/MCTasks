@@ -4,6 +4,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "product")
@@ -11,12 +15,16 @@ public class Product {
 	
 	@Id
 	@Column(name = "name", nullable = false, length = 255)
+	@NotBlank(message = "name should not be blank")
+	@Size(min = 1, max = 255, message = "name length should be between 1 and 255")
 	private String name;
 	
 	@Column(name = "description", nullable = false, length = 4095)
+	@Size(max = 4095, message = "description length should not be bigger than [4095]")
 	private String description;
 	
 	@Column(name = "price", nullable = false)
+	@Positive(message = "price should be positive")
 	private double price = (Double) 0.0;
 	
 	@Column(name = "inStock", nullable = false, columnDefinition = "boolean NOT NULL DEFAULT false")
